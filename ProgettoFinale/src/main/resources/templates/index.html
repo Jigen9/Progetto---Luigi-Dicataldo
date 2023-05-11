@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/stylemodal.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/694bcd236d.js" crossorigin="anonymous"></script>
+    <title>Azienda Gestionale</title>
+</head>
+<body>
+    <!--Nav bar che contiene i bottoni che portano alla home e alla creazione di un dipendente.-->
+    <div class="navbar">
+        <span class="button" onclick="goToHome()"><i class="fa-solid fa-house"></i> Home</span>
+        <span class="logo">Azienda Gestionale</span>
+        <form th:action="@{/}" class="barraRicerca" style="display: flex; align-items: center; margin-left: -184px;">
+            <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}"
+            style="height: 2em; width: 16em; border-radius: 10px; background-color: #EEEEEE" required />
+            &nbsp;
+            <input type="submit" value="Search" style="border-radius: 7px; margin-right: 98px; cursor: pointer; background-color: #EEEEEE"/>
+
+        </form>
+        <span class="button" style="margin-left: -25px;" onclick="goToDipendenti()"><i class="fa-sharp fa-solid fa-user-plus"></i>Dipendente</span>
+    </div>
+
+    
+    <!--Qui si visua l'intestazione che indica cosa si visualizza a schermo-->
+    <div class="container" id="container">
+        
+        <div class="primaryBar">
+            <span> NOME </span>
+            <span> COGNOME </span>
+            <span> SEDE </span>
+            <span> ANNI DI SERVIZIO </span>
+        </div>
+        <!-- qui inizia la generazione dei dipendenti con il panel --> 
+        <div class="panel"th:each="dipendente : ${listaDipendenti}"th:value="${dipendente.idDipendente}">
+        <div class="dipNome" th:text="${dipendente.nome}">Nome</div>
+        <div class="dipCognome" th:text="${dipendente.cognome}">Cognome</div>
+        <div class="dipSede" th:text="${dipendente.sede}">Sede</div>
+        <div class="dipAnniServizio" th:text="${#numbers.formatInteger(dipendente.anniServizio,1)}">Anni Servizio</div>
+        </div>
+    </div>
+
+     <!-- inizio della modale -->
+    <div class="modal" th:each="dipendente : ${listaDipendenti}" th:id="${dipendente.idDipendente}">
+        <!-- contenuto della modal -->
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-panel">
+            <div style="display: grid;">
+                <div class="modal-text">
+                    <!--qui visualizzo le info totali dello stipendio selezionato-->
+                    <p class="dipNome" th:text="'Nome: ' + ${dipendente.nome}">Nome </p>
+                    <p class="dipCognome" th:text="'Cognome: ' + ${dipendente.cognome}"></p>
+                    <p class="dipRuolo" th:text="'Ruolo: ' + ${dipendente.ruolo}"></p>
+                    <p class="dipLivello" th:text="'Livello: ' + ${dipendente.livello}"></p>
+                    <p class="dipStipendio" th:text="'Stipendio: ' + ${#numbers.formatDecimal(dipendente.stipendio, 1, 2)}"></p>
+                    <p class="dipSede" th:text="'Sede: ' + ${dipendente.sede}"></p>
+                    <p class="dipAnniServizio" th:text="'Anni di Servizio: ' + ${#numbers.formatInteger(dipendente.anniServizio,1)}"></p>
+                    
+
+                    <!--qui inizia la tabella degli orari, che viene mostrato quando cliccato il pulsante relativo-->
+                    <div class="modal-orari-list" style="display: none;" th:id="'orari-' + ${dipendente.idDipendente}">
+                    <div class="panel_ORARI" id="PannelloIndice" style="font-weight: bold;">
+                        <div class="GiornoSett">Giorno</div>
+                        <div class="Orario1">9-13</div>
+                        <div class="Orario2" >14-18</div>
+                        <div class="Orario3" >18-22</div>
+                    </div>
+                        <div class="panel_ORARI" id="PannelloContenitore" th:each="orariLavoratori : ${orariLavoratori}"th:value="${orariLavoratori.idOrario}" th:if="${orariLavoratori.idDipendente} == ${dipendente.idDipendente}">
+                            <!--inizio generazioni orari, se è 4 mette la spunta altrimenti X-->
+                            <div class="GiornoSett" th:text="${orariLavoratori.giornoSettimana}">Giorno</div>
+                            <div class="Orario1" id="data-row" ><i th:class="${orariLavoratori.orario1==4}? 'fa-sharp fa-solid fa-circle-check' : 'fa-solid fa-xmark'"></i></div>
+                            <div class="Orario2" id="data-row" ><i th:class="${orariLavoratori.orario2==4}? 'fa-sharp fa-solid fa-circle-check' : 'fa-solid fa-xmark'"></i></div>
+                            <div class="Orario3" id="data-row" ><i th:class="${orariLavoratori.orario3==4}? 'fa-sharp fa-solid fa-circle-check' : 'fa-solid fa-xmark'"></i></div>
+                            <a class="mostra-orario" id = "modificaOrario" th:id="'orario-btn-' + ${orariLavoratori.idOrario}"> <p><i class="fa-edit fa-solid " ></i> </p></a> 
+
+                        </div>
+
+                        
+                    </div>
+                    
+                    <!--bottoni con href diretto alla pagina da visualizzare. Sono sempre all'interno della modale-->
+                    <div class="modal-dip">
+                        <a class="mostra-oggetti" th:id="'orari-btn-' + ${dipendente.idDipendente}"> <p class= "edit" ><i class="fa-light fa-timer"></i> Visualizza Orari</p></a> 
+                        
+                        <a th:href="@{'/straordinari/' + ${dipendente.idDipendente}}"><p class="edit"></i> Dettagli Stipendio</p></a>
+
+                        <a th:href="@{'/edit/' + ${dipendente.idDipendente}}"><p class="edit"><i class="fa-solid fa-edit"></i> Modifica Dipendente</p></a>
+
+                        <a th:href="@{'/delete/' + ${dipendente.idDipendente}}"><p class="edit"><i class="fa-solid fa-trash"></i> Cancella Dipendente</p></a>   
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<!--inclusione degli script-->
+<script src="/js/script.js"></script>
+<script src="/js/modal.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</html>

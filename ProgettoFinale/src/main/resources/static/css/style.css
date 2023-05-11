@@ -1,0 +1,174 @@
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #EEEEEE;
+}
+
+.navbar {
+    height: 4.8em;
+    box-shadow: 0px 1px 13px rgba(11, 11, 11, 0.4);
+    border-radius: 3px;
+    margin: 2em;
+    display: grid;
+    grid-template-columns: 10% 1fr 10% 10%;
+    grid-template-rows: 1fr 1fr;
+    position: sticky;
+    z-index: 1;
+    top: 2em;
+    background-color:#E8D5C4;
+    justify-items: center;
+}
+
+.barraRicerca{
+    background: #E8D5C4;
+}
+
+.primaryBar {
+    color: black;
+    font-weight: bold;
+    height: 2em;
+    box-shadow: 0px 1px 13px rgba(11, 11, 11, 0.4);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: sticky;
+    top: 10em;
+    background-color: #3A98B9;
+    align-items: center;
+    justify-items: center;
+    z-index: 2;
+}
+
+.primaryBar_ORARI{
+    height: 2em;
+    box-shadow: 0px 1px 13px rgba(11, 11, 11, 0.4);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    position: sticky;
+    top: 10em;
+    background-color: #73D3EA;
+    align-items: center;
+    justify-items: center;
+    z-index: 2;
+}
+
+.panel_ORARI{
+
+    height: 2em;
+    background-color: #E8D5C4;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    transition: all 0.5s ease;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    cursor: pointer;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.container {
+    margin-left: 2em;
+    margin-right: 2em;
+    display: grid;
+    row-gap: 3em;
+    align-items: start;
+    align-content: center;
+}
+
+.button {
+    background-color: #3A98B9;
+    margin: auto;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14pt;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 2px #EEEEEE;
+}
+.button:hover {
+    background-color: #EEEEEE;
+    transition: 0.7s;
+}
+
+.logo {
+    margin: auto;
+    padding: 20px;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.panel {
+    height: 2em;
+    background-color: #FFF1DC;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    transition: all 0.5s ease;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    cursor: pointer;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.panel:hover {
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+    transition: 0.7s;
+}
+
+.tabellaInfo {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #333333;
+  }
+  
+  .tabellaInfo th {
+    background-color: #3A98B9;
+    color: #FFFFFF;
+    text-align: left;
+    padding: 12px;
+    font-weight: bold;
+  }
+  
+  .tabellaInfo td,
+  .tabellaInfo th {
+    border: 1px solid #EEEEEE;
+    padding: 8px;
+  }
+  
+  .tabellaInfo tr:nth-child(even) {
+    background-color: #FFF1DC;
+  }
+  
+  .tabellaInfo tr:nth-child(odd) {
+    background-color: #E8D5C4;
+  }
+  
+  .tabellaInfo tbody td:first-child {
+    font-weight: bold;
+  }
+  
+  .tabellaInfo tfoot td {
+    background-color: #3A98B9;
+    color: #FFFFFF;
+    text-align: left;
+    padding: 8px;
+    font-weight: bold;
+  }
+  
+#bottoneIndietro{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin-top: inherit;
+}

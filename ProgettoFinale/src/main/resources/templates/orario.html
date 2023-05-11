@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/stylemodal.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<title>Modifica Orairo</title>
+</head>
+<body>
+	<header>
+	</header>
+
+    <div align="center">
+		<h1> Modifica Orario</h1>
+        <h3>Orari accettati: 0(NO LAVORO)    4(SI LAVORO)</h3>
+        <br />
+        <form action="#" th:action="@{/salvaOrario}" th:object="${orario}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+				<tr style="display:none">
+                    <td>ID orario:</td>
+                    <td>
+                        <input type="text" th:field="*{idOrario}" readonly="readonly" />
+                    </td>
+                </tr>
+                <tr style="display:none">
+                    <td>ID dipendente:</td>
+                    <td>
+                        <input type="text" th:field="*{idDipendente}" readonly="readonly" />
+                    </td>
+                </tr>
+                <tr style="display:none">
+                    <td> Giorno :</td>
+                    <td>
+                        <input type="text" th:field="*{giornoSettimana}" readonly="readonly" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mattina :</td>
+                    <td><input type="text" th:field="*{orario1}" /></td>
+                </tr>
+                <tr>
+                    <td>Pomeriggio:</td>
+                    <td><input type="text" th:field="*{orario2}" /></td>
+                </tr>
+                <tr>
+                    <td>Sera:</td>
+                    <td><input type="text" th:field="*{orario3}" /></td>
+                </tr>                               
+                <tr>
+                    <td colspan="2"><button type="submit" > PER SALVARE CLICCA QUI</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <td colspan="2"><button onclick="goToHome()" style="margin-left: 55em;margin-top: 5em;">Torna alla home</button> </td>
+</body>
+<script src="/js/script.js"></script>
+</html>

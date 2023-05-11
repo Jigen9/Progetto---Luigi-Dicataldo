@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="static/css/style.css" th:href="@{/css/style.css}"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<title>Info Orari</title>
+</head>
+    <body style="background-color: #EEEEEE;">
+        <table class="tabellaInfo"> 
+            <thead>
+                <tr>
+                    <th>Ore mensili</th>
+                    <th>Ore straordinarie</th>
+                    <th>Ore notturne</th>
+                    <th>Mesi di lavoro</th>
+                    <th>Ferie</th>
+                    <th>Stipendio totale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${somma}" ></td>
+                    <td th:text="${straordinari}" ></td>
+                    <td th:text="${notturne}" ></td>
+                    <td th:text="${mesiLavorati}" ></td>
+                    <td th:text="${ferie}" ></td>
+                    <td th:text="${dipendenti.stipendio}"> </td> <!--qui stipendio-->
+                </tr>
+            </tbody> 
+        </table>
+
+        <span class="button" id = "bottoneIndietro" onclick="goToHome()"></i>Indietro</span>
+    </body>
+    <script src="/js/script.js"></script>
+</html>
